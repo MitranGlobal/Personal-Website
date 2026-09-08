@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --shell: 1280px;
+    --rule: rgba(201, 162, 39, 0.22);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-ink text-parchment font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: theme('colors.gold.DEFAULT');
+    color: theme('colors.ink.DEFAULT');
+  }
+
+  /* Visible, gold keyboard focus everywhere */
+  :focus-visible {
+    outline: 2px solid theme('colors.gold.light');
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+    font-optical-sizing: auto;
+  }
+
+  /* Bodoni's hairlines need a touch more weight on dark backgrounds */
+  .on-dark-display {
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 0 0 1px rgba(247, 243, 236, 0.14);
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-6 md:px-10;
+  }
+
+  .rule-top {
+    border-top: 1px solid var(--rule);
+  }
+
+  .hairline {
+    @apply block h-px w-full;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(201, 162, 39, 0.45) 18%,
+      rgba(201, 162, 39, 0.45) 82%,
+      transparent
+    );
+  }
+
+  /* Gold leaf text — used only on the wordmark and one or two figures */
+  .goldleaf {
+    background: linear-gradient(
+      168deg,
+      #f0d97d 0%,
+      #c9a227 34%,
+      #8a6b12 52%,
+      #e8cf72 68%,
+      #c9a227 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center font-sans text-[0.94rem] font-medium
+           transition-colors duration-300 ease-silk;
+    padding: 0.95rem 1.9rem;
+  }
+
+  .btn-gold {
+    @apply btn bg-gold text-ink;
+    box-shadow: 0 0 0 1px rgba(240, 217, 125, 0.5) inset;
+  }
+  .btn-gold:hover {
+    @apply bg-gold-light;
+  }
+
+  .btn-ghost {
+    @apply btn text-parchment;
+    box-shadow: 0 0 0 1px rgba(183, 155, 232, 0.34) inset;
+  }
+  .btn-ghost:hover {
+    @apply text-gold-light;
+    box-shadow: 0 0 0 1px rgba(240, 217, 125, 0.55) inset;
+  }
+
+  .lead {
+    @apply max-w-prose text-[1.06rem] leading-[1.72] text-parchment/72;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .pause-on-hover:hover {
+    animation-play-state: paused;
+  }
+}
+
+/* Respect the system preference — kill every non-essential motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
