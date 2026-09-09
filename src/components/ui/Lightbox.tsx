@@ -39,7 +39,7 @@ export default function Lightbox() {
           role="dialog"
           aria-modal="true"
           aria-label={current.caption ?? current.alt}
-          className="fixed inset-0 z-[200] flex items-center justify-center bg-ink/94 backdrop-blur-md"
+          className="fixed inset-0 z-[200] flex items-center justify-center bg-ink/85 backdrop-blur-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -54,7 +54,7 @@ export default function Lightbox() {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative aspect-[3/2] w-full overflow-hidden bg-ink-panel ring-1 ring-gold/30">
+            <div className="relative aspect-[3/2] w-full overflow-hidden bg-paper ring-1 ring-paper/40">
               <Image
                 src={current.src}
                 alt={current.alt}
@@ -66,7 +66,7 @@ export default function Lightbox() {
             </div>
 
             {current.caption ? (
-              <figcaption className="mt-4 text-center text-sm text-parchment/65">
+              <figcaption className="mt-4 text-center text-sm text-paper/70">
                 {current.caption}
               </figcaption>
             ) : null}
@@ -75,16 +75,16 @@ export default function Lightbox() {
               <div className="mt-5 flex items-center justify-center gap-6">
                 <button
                   onClick={prev}
-                  className="px-4 py-2 text-sm text-parchment/70 transition-colors hover:text-gold-light"
+                  className="px-4 py-2 text-sm text-paper/75 transition-colors hover:text-brass-light"
                 >
                   Previous
                 </button>
-                <span className="font-sans text-sm tabular-nums text-parchment/45">
+                <span className="font-sans text-sm tabular-nums text-paper/50">
                   {index + 1} / {items.length}
                 </span>
                 <button
                   onClick={next}
-                  className="px-4 py-2 text-sm text-parchment/70 transition-colors hover:text-gold-light"
+                  className="px-4 py-2 text-sm text-paper/75 transition-colors hover:text-brass-light"
                 >
                   Next
                 </button>
@@ -95,7 +95,7 @@ export default function Lightbox() {
           <button
             ref={closeRef}
             onClick={close}
-            className="absolute right-6 top-6 px-4 py-2 text-sm text-parchment/70 transition-colors hover:text-gold-light"
+            className="absolute right-6 top-6 px-4 py-2 text-sm text-paper/75 transition-colors hover:text-brass-light"
           >
             Close
           </button>

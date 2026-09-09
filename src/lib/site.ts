@@ -1,13 +1,13 @@
 /**
- * Single source of truth for every piece of copy on the site.
- * Edit here — no component holds hard-coded content.
+ * All copy lives here. Written in first person on purpose — this is a person's
+ * site, not an organisation's. Keep the voice plain and specific when editing.
  */
 
 export const site = {
   name: 'Vidyashankar Guru',
-  role: 'TEDx Speaker · Author · Teen Performance Coach',
-  title: 'Co-Founder & Chief Vision Officer, MiTran Global',
-  tagline: 'Every child has the right to feel #positive',
+  role: 'I coach teenagers. And their parents, usually.',
+  org: 'MiTran Global',
+  since: 2005,
 
   urls: {
     mitran: 'https://www.mitranglobal.com',
@@ -19,307 +19,196 @@ export const site = {
 
   contact: {
     email: 'connect@mitranglobal.com',
-    phone: '+91 00000 00000',
-    office: 'MiTran Global · India',
+    office: 'MiTran Global, India',
   },
 
   social: [
-    { label: 'YouTube', href: 'https://youtube.com/@mitranglobal', handle: '@mitranglobal' },
-    { label: 'Instagram', href: 'https://instagram.com/vidyashankarguru', handle: '@vidyashankarguru' },
-    { label: 'LinkedIn', href: 'https://linkedin.com/in/vidyashankarguru', handle: '/in/vidyashankarguru' },
-    { label: 'Facebook', href: 'https://facebook.com/mitranglobal', handle: '/mitranglobal' },
-    { label: 'X', href: 'https://x.com/vidyashankaru', handle: '@vidyashankaru' },
-    { label: 'Spotify', href: 'https://open.spotify.com', handle: 'The MiTran Podcast' },
+    { label: 'YouTube', href: 'https://youtube.com/@mitranglobal' },
+    { label: 'Instagram', href: 'https://instagram.com/vidyashankarguru' },
+    { label: 'LinkedIn', href: 'https://linkedin.com/in/vidyashankarguru' },
+    { label: 'Facebook', href: 'https://facebook.com/mitranglobal' },
   ],
 
   nav: [
-    {
-      label: 'About',
-      href: '/about',
-      children: [
-        { label: 'The Story', href: '/about' },
-        { label: 'Awards & Recognition', href: '/about#awards' },
-        { label: 'Press & Media Kit', href: '/about#media' },
-      ],
-    },
-    {
-      label: 'Programs',
-      href: '/programs',
-      children: [
-        { label: 'Teen Performance System', href: '/programs#system' },
-        { label: 'Platinum Program', href: '/programs#platinum' },
-        { label: 'Positivity Score', href: '/programs#score' },
-        { label: 'For Schools', href: '/programs#schools' },
-      ],
-    },
-    {
-      label: 'Books',
-      href: '/books',
-      children: [
-        { label: 'All Books', href: '/books' },
-        { label: 'Free Chapter', href: '/books#free' },
-      ],
-    },
-    {
-      label: 'Speaking',
-      href: '/speaking',
-      children: [
-        { label: 'Book Vidyashankar', href: '/speaking' },
-        { label: 'Keynote Topics', href: '/speaking#topics' },
-        { label: 'Past Stages', href: '/speaking#stages' },
-      ],
-    },
-    { label: 'Contact', href: '/contact' },
+    { label: 'About me', href: '/about' },
+    { label: 'The 90 days', href: '/programs' },
+    { label: 'Books', href: '/books' },
+    { label: 'Speaking', href: '/speaking' },
+    { label: 'Get in touch', href: '/contact' },
   ],
 
   hero: {
-    eyebrow: 'MiTran Global',
-    line1: 'Vidyashankar',
-    line2: 'Guru',
-    kicker: 'Fix the root. Everything else follows.',
-    blurb:
-      'Twenty years inside the minds of teenagers. Hundreds of families across India, forty-plus nationalities, and one finding that never changed — marks, focus and confidence are symptoms. The mind underneath is the cause. Train that, and the rest takes care of itself.',
-    primaryCta: { label: 'Watch the free training', href: '/programs#training' },
-    secondaryCta: { label: 'Read the story', href: '/about' },
+    margin: 'Working with teenagers since 2005',
+    headline: 'I work with teenagers who have stopped trying.',
+    standfirst: 'And with the parents who have been watching it happen.',
+    body: [
+      'Most of them have already tried tuition. Some have seen a counsellor. There was nothing wrong with any of that. It just was not aimed at the thing that had actually gone wrong.',
+      'A teenager who panics before an exam they prepared for does not have a study problem. A teenager who cannot hold a timetable for more than three days does not have a scheduling problem. Something underneath was never built. That is the part I work on.',
+    ],
+    primary: { label: 'Watch the free training', href: '/programs#training' },
+    secondary: { label: 'Or read how the 90 days work', href: '/programs' },
+    caption: 'Gold silk, woven live in your browser.',
   },
 
-  credentials: [
-    'TEDx Speaker',
-    'Author of five books',
-    'NLP Practitioner',
-    'Teen Psychology',
-    '40+ nationalities coached',
-    'Lifetime Achievement Award',
+  /** The complaints parents actually arrive with, in their words. */
+  voices: [
+    'He was fine until Class 9. I do not know what happened.',
+    'She knows the answers. She just freezes in the exam hall.',
+    'Every timetable we make lasts three days.',
+    'He has stopped telling me anything.',
+    'I can see she wants to do better. Something stops her.',
+    'We have tried everything. I am running out of ideas.',
   ],
-
-  stats: [
-    { value: 20, suffix: '+', label: 'Years coaching teenagers' },
-    { value: 40, suffix: '+', label: 'Nationalities worked with' },
-    { value: 5, suffix: '', label: 'Books on teen performance' },
-    { value: 90, suffix: '', label: 'Days to rebuild the root' },
-  ],
+  voicesNote:
+    'I have heard each of these in the last month. Not variations of them. These sentences, more or less exactly.',
 
   about: {
-    heading: 'A parent who felt something was off, and decided not to wait.',
+    headline: 'I did not come to this from psychology. I came to it as a parent.',
     body: [
-      'Vidyashankar Guru is the Co-Founder and Chief Vision Officer of MiTran Global, a TEDx speaker, and the author of five books on performance, parenting and self-belief.',
-      'For two decades he has sat across from parents watching a bright child shrink — the one who stops trying before the attempt, who studies in last-minute panic, who disappears into a room and answers in single words. Every one of those parents had already tried the obvious things. Tuition. Timetables. Counselling. Talks.',
-      'His work starts one level below all of that. Not the leaves — the root. A mind that was never trained to hold pressure and failure from the inside. Once that single capability is built, marks improve, focus returns and confidence comes back on its own, without anyone pushing.',
+      'I am Vidyashankar Guru. I co-founded MiTran Global and I am its Chief Vision Officer, which is a grander title than the work deserves. Most weeks I am on a call with a sixteen-year-old who does not especially want to be on it yet.',
+      'Twenty years ago I noticed something in my own house that I could not explain and did not want to wait out. That turned into training, then into practice, then into a method. Since then I have worked with young people from around forty nationalities, spoken at TEDx, and written five books, mostly because parents kept asking the same questions and I ran out of time to answer them one at a time.',
+      'What I have learned in all of it is unglamorous. Almost every teenager who is struggling is struggling for the same reason, and it is almost never the reason anyone is looking at.',
     ],
-    signature: 'Vidyashankar Guru',
+    marginalia: [
+      'TEDx speaker',
+      'Five books',
+      'Certified NLP practitioner',
+      'Around 40 nationalities',
+      'Co-founder, MiTran Global',
+    ],
+    photoCaption: 'Bengaluru, last year. I talk with my hands.',
   },
 
-  tiles: [
-    {
-      title: 'Coaching',
-      note: 'The 90-day Teen Performance System',
-      href: '/programs#system',
-    },
-    {
-      title: 'Speaking',
-      note: 'Keynotes for schools, corporates and conferences',
-      href: '/speaking',
-    },
-    {
-      title: 'Books',
-      note: 'Five titles on performance and parenting',
-      href: '/books',
-    },
-    {
-      title: 'Positivity Score',
-      note: 'Assess wellbeing across ten vital areas',
-      href: '/programs#score',
-    },
-  ],
-
-  system: {
-    heading: 'The MiTran Teen Performance System',
-    lead: 'A 90-day, one-to-one coaching programme built on four pillars. Not a timetable — a mindset.',
-    pillars: [
+  work: {
+    headline: 'What the ninety days actually involve',
+    standfirst:
+      'One-to-one, weekly, with a parallel track for parents. Here is the honest shape of it, in order, because the order matters more than people expect.',
+    phases: [
       {
-        title: 'Calm under pressure & focus reset',
-        body: 'Rebuild the response to stress, exams and failure so the mind stops flooding at the moment it is needed most.',
+        when: 'Weeks 1 to 3',
+        title: 'Getting the panic down',
+        body: 'Nothing can be taught to a mind that floods. We start by making exams, marks and failure survivable at the level of the body, before touching habits at all.',
       },
       {
-        title: 'Confidence & self-discipline',
-        body: 'Replace borrowed motivation with an internal standard the teenager holds themselves to, on the days nobody is watching.',
+        when: 'Weeks 4 to 6',
+        title: 'Building a standard they own',
+        body: 'This is where borrowed motivation gets replaced. The aim is a teenager who works on a day nobody asked, and does not need praise for it afterwards.',
       },
       {
-        title: 'Study performance & life skills',
-        body: 'Ownership of time, priorities and follow-through — the skills school assumes are already there and never teaches.',
+        when: 'Weeks 7 to 10',
+        title: 'Time, priorities, follow-through',
+        body: 'Only now do we reach the practical things everyone wanted to start with. They stick at this point because there is finally something underneath to hold them.',
       },
       {
-        title: 'Guided implementation & personal coaching',
-        body: 'Weekly one-to-one work with a coach, plus a parallel track for parents, so the change holds after the ninety days end.',
+        when: 'Weeks 11 to 13',
+        title: 'Handing it over',
+        body: 'The programme is designed to end. The last stretch removes me and the parent from the loop, so what is left is a teenager running their own life.',
       },
     ],
-    roadmap: 'The MiTran Roadmap · 24 steps to mind transformation and performance mastery',
+    parentNote:
+      'Parents get their own sessions throughout. Not because parents are the problem, but because the household usually has to change shape a little for any of this to hold.',
+    roadmap: 'The full method runs to 24 steps. The four phases above are how they group.',
   },
 
-  positivity: {
-    heading: 'The Positivity Score',
-    lead: 'A structured assessment of a young person\u2019s wellbeing across ten vital areas — clear enough for a parent to read, specific enough to act on.',
+  score: {
+    headline: 'Before any of that, a straight look at where they are',
+    body: 'The Positivity Score assesses ten areas of a young person\u2019s wellbeing. It takes about twenty minutes and gives you something concrete to look at instead of a feeling that something is off.',
     areas: [
-      'Emotional Regulation',
-      'Sense of Purpose',
-      'Self-Awareness',
-      'Healthy Lifestyle',
+      'Emotional regulation',
+      'Sense of purpose',
+      'Self-awareness',
+      'Healthy lifestyle',
       'Adaptability',
       'Leadership',
-      'Self-Management',
+      'Self-management',
       'Resilience',
-      'Interpersonal Skills',
-      'Decision-Making',
+      'Interpersonal skills',
+      'Decision-making',
     ],
+    cta: { label: 'Take the assessment', href: '/programs#score' },
     stat: {
       figure: '1 in 7',
-      body: 'adolescents aged 10\u201319 lives with a mental health condition worldwide.',
+      body: 'adolescents between 10 and 19 is living with a mental health condition, worldwide.',
       source: 'World Health Organization',
     },
   },
 
-  books: [
-    {
-      title: 'One Untold Secret of Success',
-      note: 'The single internal capability behind every turnaround he has seen.',
-      href: '/books',
-    },
-    {
-      title: 'Sweep Through Your Interviews',
-      note: 'Preparation, presence and nerve for the moment that decides the offer.',
-      href: '/books',
-    },
-    {
-      title: 'Be a Champ',
-      note: 'Building the champion\u2019s mindset in a young person, long before the trophy.',
-      href: '/books',
-    },
-    {
-      title: '101 Secrets of Effective Parenting',
-      note: 'Practical shifts for parents raising teenagers under modern pressure.',
-      href: '/books',
-    },
-  ],
-
-  testimonials: [
-    {
-      quote:
-        'We had tried three tuition centres and a counsellor. This was the first time anyone asked what was happening inside her head rather than on her report card.',
-      author: 'Parent of a Grade 11 student',
-      place: 'Bengaluru',
-    },
-    {
-      quote:
-        'By week six he was starting work before I said anything. I had stopped believing that would happen.',
-      author: 'Parent of a Grade 9 student',
-      place: 'Chennai',
-    },
-    {
-      quote:
-        'Our students came out of the sessions talking about pressure differently. Vidyashankar speaks to teenagers without ever speaking down to them.',
-      author: 'School Principal',
-      place: 'Hyderabad',
-    },
-    {
-      quote:
-        'I used to freeze in exams even when I knew the answers. That does not happen to me anymore.',
-      author: 'Student, Grade 12',
-      place: 'Mumbai',
-    },
-  ],
-
-  awards: [
-    {
-      title: 'Indian Achievers Award for Industrial Excellence',
-      body: 'Indian Economic Development & Research Association',
-      year: '2011',
-    },
-    {
-      title: 'Edupreneur of the Year',
-      body: 'Times Group',
-      year: '2012',
-    },
-    {
-      title: 'Lifetime Achievement Award',
-      body: 'Global Education Conclave',
-      year: '—',
-    },
-  ],
-
-  speaking: {
-    heading: 'Bring Vidyashankar to your stage',
-    lead: 'Keynotes and workshops for schools, parent bodies, conferences and corporate leadership teams — delivered in English, and shaped for the room rather than read from a deck.',
-    topics: [
-      'Why your child\u2019s problem is never the problem you can see',
-      'Raising a teenager who can hold pressure',
-      'The performance mindset: from marks to ownership',
-      'Building resilience before the stakes get high',
-    ],
-    cta: { label: 'Enquire about a date', href: '/contact' },
+  training: {
+    headline: 'Start with the free training',
+    body: 'Twenty-five minutes on what is actually happening in your child\u2019s head, and what changes first. It costs nothing and I do not ask for a card. If it makes sense afterwards, book a call.',
+    primary: { label: 'Watch it now', href: '/programs#training' },
+    secondary: { label: 'Book a call instead', href: '/contact' },
   },
 
-  training: {
-    heading: 'Start with the free training',
-    body: 'A walk through exactly what is happening inside your child\u2019s mind, and what changes in the first ninety days. No cost. If it makes sense, book a call with the team afterwards.',
-    cta: { label: 'Watch the free training', href: '/programs#training' },
-    secondary: { label: 'Book a consultation', href: '/contact' },
+  books: {
+    headline: 'Five books',
+    standfirst:
+      'Each one started as a question I was answering too often in person. They are short on theory and long on what to do on a Tuesday evening.',
+    items: [
+      { title: 'One Untold Secret of Success', note: 'The single thing underneath every turnaround I have watched.' },
+      { title: 'Sweep Through Your Interviews', note: 'For the twenty minutes that decide an offer, and the nerve it takes.' },
+      { title: 'Be a Champ', note: 'Written for teenagers, not about them.' },
+      { title: '101 Secrets of Effective Parenting', note: 'Small changes, tested on real households, mine included.' },
+    ],
+    fifthNote: 'Add the fifth title in src/lib/site.ts once you confirm which it is.',
+  },
+
+  letters: {
+    headline: 'What parents write afterwards',
+    items: [
+      {
+        text: 'We had been to three tuition centres and a counsellor. You were the first person who asked what was going on in her head instead of what was on her report card.',
+        from: 'Mother of a Class 11 student, Bengaluru',
+      },
+      {
+        text: 'By the sixth week he was starting work before I said anything. I had genuinely stopped believing that would happen in this house.',
+        from: 'Father of a Class 9 student, Chennai',
+      },
+      {
+        text: 'Our students came out talking about pressure differently. He speaks to teenagers without ever speaking down to them, which is rarer than it sounds.',
+        from: 'Principal, Hyderabad',
+      },
+      {
+        text: 'I used to freeze in exams even when I knew everything. That does not happen to me now.',
+        from: 'Student, Class 12, Mumbai',
+      },
+    ],
+  },
+
+  speaking: {
+    headline: 'If you want me on a stage',
+    body: 'I speak at schools, parent bodies, conferences and the occasional corporate leadership day. I do not read from a deck, and I would rather talk about the room I am in than deliver a set piece.',
+    topics: [
+      'Why your child\u2019s problem is almost never the problem you can see',
+      'Raising a teenager who can sit inside pressure',
+      'From marks to ownership: what actually shifts performance',
+      'Building resilience before the stakes get high',
+    ],
+    cta: { label: 'Ask about a date', href: '/contact' },
+  },
+
+  recognition: {
+    headline: 'Recognition',
+    note: 'Listed because people ask, not because it changed how the work is done.',
+    items: [
+      {
+        year: '2011',
+        title: 'Indian Achievers Award for Industrial Excellence',
+        by: 'Indian Economic Development & Research Association',
+      },
+      { year: '2012', title: 'Edupreneur of the Year', by: 'Times Group' },
+      { year: '', title: 'Lifetime Achievement Award', by: 'Global Education Conclave' },
+    ],
   },
 
   newsletter: {
-    heading: 'One idea for parents, every week',
-    body: 'Short, practical notes on what actually moves a teenager. No pitch, no filler.',
-    cta: 'Subscribe',
+    headline: 'One note a week, for parents',
+    body: 'Something short and usable every Sunday. No pitch in it. Unsubscribe whenever you like and I will not chase you.',
+    cta: 'Send it to me',
   },
 
-  press: [
-    'TEDx',
-    'Times Group',
-    'Global Education Conclave',
-    'Indian Achievers Award',
-    'MiTran Global',
-    'Positivity Hub',
-  ],
-
-  footer: {
-    columns: [
-      {
-        heading: 'Work with me',
-        links: [
-          { label: 'Teen Performance System', href: '/programs#system' },
-          { label: 'Platinum Program', href: '/programs#platinum' },
-          { label: 'Positivity Score', href: '/programs#score' },
-          { label: 'For Schools', href: '/programs#schools' },
-        ],
-      },
-      {
-        heading: 'About',
-        links: [
-          { label: 'The Story', href: '/about' },
-          { label: 'Awards', href: '/about#awards' },
-          { label: 'Speaking', href: '/speaking' },
-          { label: 'Media Kit', href: '/about#media' },
-        ],
-      },
-      {
-        heading: 'Resources',
-        links: [
-          { label: 'Free Training', href: '/programs#training' },
-          { label: 'Books', href: '/books' },
-          { label: 'Newsletter', href: '/#newsletter' },
-          { label: 'MiTran Global', href: 'https://www.mitranglobal.com' },
-        ],
-      },
-      {
-        heading: 'Support',
-        links: [
-          { label: 'Contact', href: '/contact' },
-          { label: 'Book a Consultation', href: '/contact' },
-          { label: 'Privacy Policy', href: '/privacy' },
-          { label: 'Terms', href: '/terms' },
-        ],
-      },
-    ],
-  },
+  footerNote:
+    'Every child has the right to feel positive about themselves. That line has been on everything I have made for twenty years and I have not found a reason to change it.',
 } as const;
 
 export type Site = typeof site;

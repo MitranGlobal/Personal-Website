@@ -1,43 +1,56 @@
+'use client';
+
 import Link from 'next/link';
-import Reveal from '@/components/ui/Reveal';
-import SectionHeading from '@/components/ui/SectionHeading';
+import { useTimelineRule } from '@/hooks/useTimelineRule';
 import { site } from '@/lib/site';
 
 /**
- * The four pillars ARE a sequence — pillar one has to hold before pillar two
- * lands — so numbering is doing real work here rather than decorating.
+ * The ninety days, as a dated sequence. Phases are marked by week rather than
+ * by "01 / 02" because the weeks are the actual information.
  */
 export default function System() {
+  const { containerRef, ruleRef } = useTimelineRule<HTMLOListElement>();
+
   return (
-    <section id="system" className="relative overflow-hidden bg-ink-panel py-section">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -left-40 top-1/3 h-[520px] w-[520px] rounded-full opacity-25 blur-[120px]"
-        style={{ background: 'radial-gradient(circle, #5B21B6 0%, transparent 70%)' }}
-      />
+    <section id="system" className="border-b border-ink/12 bg-paper-warm">
+      <div className="shell spread py-section">
+        <p className="shoulder lg:pt-2">The programme</p>
 
-      <div className="shell relative">
-        <SectionHeading title={site.system.heading} lead={site.system.lead} />
+        <div>
+          <h2 className="max-w-[20ch] text-d-lg text-balance text-ink">{site.work.headline}</h2>
+          <p className="body-copy mt-6 text-pretty">{site.work.standfirst}</p>
 
-        <Reveal as="ol" className="mt-16 grid gap-px bg-gold/18 md:grid-cols-2" stagger="li">
-          {site.system.pillars.map((p, i) => (
-            <li key={p.title} className="bg-ink-panel p-9">
-              <span className="font-display text-4xl text-gold/45 tabular-nums">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <h3 className="mt-5 font-display text-display-sm text-parchment">{p.title}</h3>
-              <p className="mt-4 max-w-[42ch] font-sans text-[0.95rem] leading-relaxed text-parchment/60">
-                {p.body}
-              </p>
-            </li>
-          ))}
-        </Reveal>
+          <ol ref={containerRef} className="relative mt-12 border-t border-ink/12 md:pl-8">
+            {/* Track and the rule that fills through it */}
+            <span aria-hidden className="absolute left-0 top-0 hidden h-full w-px bg-ink/12 md:block" />
+            <span
+              ref={ruleRef}
+              aria-hidden
+              className="absolute left-0 top-0 hidden h-full w-px origin-top bg-brass md:block"
+              style={{ transform: 'scaleY(0)' }}
+            />
 
-        <div className="mt-14 flex flex-col gap-6 border-t border-gold/20 pt-8 md:flex-row md:items-center md:justify-between">
-          <p className="max-w-xl font-display text-xl italic text-gold/75">{site.system.roadmap}</p>
-          <Link href="/programs" className="btn-gold shrink-0">
-            See how the 90 days work
-          </Link>
+            {site.work.phases.map((p) => (
+              <li key={p.title} className="grid gap-2 border-b border-ink/12 py-7 md:grid-cols-[9rem_1fr] md:gap-8">
+                <span className="font-sans text-[0.85rem] text-brass">{p.when}</span>
+                <div>
+                  <h3 className="text-d-sm text-ink">{p.title}</h3>
+                  <p className="mt-2.5 max-w-prose text-[1rem] leading-[1.66] text-ink-soft">{p.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+
+          <p className="mt-8 max-w-prose font-display text-[1.1rem] italic leading-relaxed text-plum">
+            {site.work.parentNote}
+          </p>
+
+          <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-3">
+            <Link href="/programs" className="btn-solid">
+              See the full method
+            </Link>
+            <span className="max-w-note font-sans text-[0.85rem] text-ink-faint">{site.work.roadmap}</span>
+          </div>
         </div>
       </div>
     </section>

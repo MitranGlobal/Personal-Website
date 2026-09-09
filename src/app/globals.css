@@ -3,44 +3,34 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --shell: 1280px;
-    --rule: rgba(201, 162, 39, 0.22);
-  }
-
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
   }
 
   body {
-    @apply bg-ink text-parchment font-sans antialiased;
-    text-rendering: optimizeLegibility;
+    @apply bg-paper text-ink font-sans antialiased;
+    /* Faint paper tooth. Two offset dot layers, low enough to feel rather than see. */
+    background-image:
+      radial-gradient(rgba(36, 20, 40, 0.028) 1px, transparent 1px),
+      radial-gradient(rgba(74, 30, 92, 0.022) 1px, transparent 1px);
+    background-size: 22px 22px, 22px 22px;
+    background-position: 0 0, 11px 11px;
   }
 
   ::selection {
-    background: theme('colors.gold.DEFAULT');
+    background: theme('colors.brass.light');
     color: theme('colors.ink.DEFAULT');
   }
 
-  /* Visible, gold keyboard focus everywhere */
   :focus-visible {
-    outline: 2px solid theme('colors.gold.light');
+    outline: 2px solid theme('colors.plum.DEFAULT');
     outline-offset: 3px;
-    border-radius: 2px;
   }
 
-  h1,
-  h2,
-  h3 {
-    @apply font-display;
-    font-optical-sizing: auto;
-  }
-
-  /* Bodoni's hairlines need a touch more weight on dark backgrounds */
-  .on-dark-display {
-    -webkit-font-smoothing: antialiased;
-    text-shadow: 0 0 1px rgba(247, 243, 236, 0.14);
+  h1, h2, h3 {
+    @apply font-display font-normal;
+    font-variation-settings: 'SOFT' 18, 'WONK' 1;
   }
 }
 
@@ -49,86 +39,83 @@
     @apply mx-auto w-full max-w-shell px-6 md:px-10;
   }
 
-  .rule-top {
-    border-top: 1px solid var(--rule);
+  /* Editorial two-column: a narrow shoulder for notes, then the text column. */
+  .spread {
+    @apply grid gap-y-6;
+    grid-template-columns: 1fr;
+  }
+  @screen lg {
+    .spread {
+      grid-template-columns: 11rem minmax(0, 1fr);
+      column-gap: 3.5rem;
+    }
   }
 
-  .hairline {
-    @apply block h-px w-full;
-    background: linear-gradient(
-      to right,
-      transparent,
-      rgba(201, 162, 39, 0.45) 18%,
-      rgba(201, 162, 39, 0.45) 82%,
-      transparent
-    );
+  .shoulder {
+    @apply font-sans text-[0.8rem] leading-relaxed text-ink-faint;
   }
 
-  /* Gold leaf text — used only on the wordmark and one or two figures */
-  .goldleaf {
-    background: linear-gradient(
-      168deg,
-      #f0d97d 0%,
-      #c9a227 34%,
-      #8a6b12 52%,
-      #e8cf72 68%,
-      #c9a227 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  .body-copy {
+    @apply max-w-prose text-[1.08rem] leading-[1.68] text-ink-soft;
+  }
+  .body-copy + .body-copy {
+    @apply mt-5;
   }
 
   .btn {
-    @apply inline-flex items-center justify-center font-sans text-[0.94rem] font-medium
-           transition-colors duration-300 ease-silk;
-    padding: 0.95rem 1.9rem;
+    @apply inline-flex items-center justify-center font-sans text-[0.95rem] font-medium
+           transition-colors duration-200 ease-ease;
+    padding: 0.85rem 1.6rem;
+    border-radius: 2px;
+  }
+  .btn-solid {
+    @apply btn bg-plum text-paper;
+  }
+  .btn-solid:hover {
+    @apply bg-plum-lift;
+  }
+  .btn-line {
+    @apply btn text-plum;
+    box-shadow: inset 0 0 0 1px rgba(74, 30, 92, 0.35);
+  }
+  .btn-line:hover {
+    @apply text-plum-lift;
+    box-shadow: inset 0 0 0 1px rgba(74, 30, 92, 0.7);
   }
 
-  .btn-gold {
-    @apply btn bg-gold text-ink;
-    box-shadow: 0 0 0 1px rgba(240, 217, 125, 0.5) inset;
+  /* Underline that sits on the baseline like a printed rule, not a link default */
+  .quiet-link {
+    @apply text-plum transition-colors duration-200;
+    text-decoration: underline;
+    text-decoration-color: rgba(169, 117, 20, 0.5);
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
   }
-  .btn-gold:hover {
-    @apply bg-gold-light;
-  }
-
-  .btn-ghost {
-    @apply btn text-parchment;
-    box-shadow: 0 0 0 1px rgba(183, 155, 232, 0.34) inset;
-  }
-  .btn-ghost:hover {
-    @apply text-gold-light;
-    box-shadow: 0 0 0 1px rgba(240, 217, 125, 0.55) inset;
+  .quiet-link:hover {
+    text-decoration-color: theme('colors.brass.DEFAULT');
   }
 
-  .lead {
-    @apply max-w-prose text-[1.06rem] leading-[1.72] text-parchment/72;
+  .rule {
+    @apply block h-px w-full bg-ink/12;
   }
+
+  /* Photographs sit slightly off-square, as if placed by hand */
+  .tipped-a { transform: rotate(-1.1deg); }
+  .tipped-b { transform: rotate(0.8deg); }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-  .text-pretty {
-    text-wrap: pretty;
-  }
-  .pause-on-hover:hover {
-    animation-play-state: paused;
-  }
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+  .hang { text-indent: -0.42em; }
 }
 
-/* Respect the system preference — kill every non-essential motion */
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
+  .tipped-a, .tipped-b { transform: none; }
 }

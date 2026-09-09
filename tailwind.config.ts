@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss';
 
-// Tailwind's default opacity scale jumps in 5s and 10s, which is too coarse for
-// layering parchment on ink. Generate every integer step instead.
+// Full integer opacity scale — the default steps are too coarse for layering
+// ink on a tinted paper ground.
 const opacity = Object.fromEntries(
   Array.from({ length: 101 }, (_, i) => [String(i), String(i / 100)]),
 );
@@ -12,64 +12,50 @@ const config: Config = {
     extend: {
       opacity,
       colors: {
-        // Base — deep ink-plum, not a tinted near-black
+        // Paper — the brand purple bleached down into a page ground,
+        // rather than a default warm cream.
+        paper: {
+          DEFAULT: '#F4F0F5',
+          warm: '#EDE6EE',
+          deep: '#E3D9E6',
+        },
+        // Text — a warm aubergine-black, never a tinted grey
         ink: {
-          DEFAULT: '#0F0616',
-          soft: '#160A21',
-          panel: '#1E0B33',
-          raised: '#2A1147',
+          DEFAULT: '#241428',
+          soft: '#4A3B50',
+          faint: '#6F6275',
         },
-        // Imperial violet
-        violet: {
-          deep: '#3B0F70',
-          DEFAULT: '#5B21B6',
-          lift: '#7C3AED',
-          mist: '#B79BE8',
+        plum: {
+          DEFAULT: '#4A1E5C',
+          lift: '#6E3193',
         },
-        // Antique gold — the single accent
-        gold: {
-          deep: '#8A6B12',
-          DEFAULT: '#C9A227',
-          light: '#F0D97D',
-          wash: '#FBF0C9',
+        // Gold, warmed toward marigold so it reads as pigment, not metal
+        brass: {
+          DEFAULT: '#A97514',
+          light: '#E3B341',
+          wash: '#F6E7C2',
         },
-        parchment: '#F7F3EC',
-        muted: '#9C8FB0',
       },
       fontFamily: {
         display: ['var(--font-display)', 'Georgia', 'serif'],
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
       },
       fontSize: {
-        // Type scale — classical, 1.25 ratio with a jump at display sizes
-        'display-xl': ['clamp(3.6rem, 11vw, 10.5rem)', { lineHeight: '0.86', letterSpacing: '-0.03em' }],
-        'display-lg': ['clamp(2.7rem, 6.4vw, 5.4rem)', { lineHeight: '0.96', letterSpacing: '-0.02em' }],
-        'display-md': ['clamp(2rem, 4.2vw, 3.4rem)', { lineHeight: '1.06', letterSpacing: '-0.015em' }],
-        'display-sm': ['clamp(1.5rem, 2.6vw, 2.1rem)', { lineHeight: '1.18', letterSpacing: '-0.01em' }],
+        'd-xl': ['clamp(2.6rem, 6.2vw, 5.2rem)', { lineHeight: '1.02', letterSpacing: '-0.022em' }],
+        'd-lg': ['clamp(2.1rem, 4.4vw, 3.6rem)', { lineHeight: '1.08', letterSpacing: '-0.018em' }],
+        'd-md': ['clamp(1.6rem, 2.9vw, 2.4rem)', { lineHeight: '1.16', letterSpacing: '-0.012em' }],
+        'd-sm': ['clamp(1.25rem, 1.9vw, 1.55rem)', { lineHeight: '1.28', letterSpacing: '-0.008em' }],
       },
       maxWidth: {
-        shell: '1280px',
-        prose: '68ch',
+        shell: '1180px',
+        prose: '62ch',
+        note: '30ch',
       },
       spacing: {
-        section: 'clamp(5rem, 11vw, 9.5rem)',
+        section: 'clamp(4.5rem, 9vw, 8rem)',
       },
       transitionTimingFunction: {
-        silk: 'cubic-bezier(0.22, 1, 0.36, 1)',
-      },
-      keyframes: {
-        marquee: {
-          from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(-50%)' },
-        },
-        shimmer: {
-          '0%, 100%': { opacity: '0.55' },
-          '50%': { opacity: '1' },
-        },
-      },
-      animation: {
-        marquee: 'marquee 42s linear infinite',
-        shimmer: 'shimmer 4.5s ease-in-out infinite',
+        ease: 'cubic-bezier(0.2, 0.7, 0.3, 1)',
       },
     },
   },

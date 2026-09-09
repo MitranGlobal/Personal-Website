@@ -1,81 +1,74 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import PageHead from '@/components/ui/PageHead';
 import { site } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Contact',
-  description: 'Book a consultation, enquire about a speaking date, or reach the MiTran Global team.',
+  title: 'Get in touch',
+  description: 'Book a call, ask about a school workshop, or enquire about a speaking date.',
 };
 
 const routes = [
   {
-    heading: 'For parents',
-    body: 'Start with the free training, then book a call. The team will look at your child\u2019s situation and map out what the ninety days would involve.',
-    cta: { label: 'Book a consultation', href: site.urls.calendly },
+    heading: 'You are a parent',
+    body: 'Start with the free training, then book a call. We look at your child\u2019s situation specifically and tell you honestly whether this is the right thing for them.',
+    label: 'Book a call',
+    href: site.urls.calendly,
   },
   {
-    heading: 'For schools',
-    body: 'Workshops, parent sessions and the Positivity Score assessment, run across a cohort or a whole year group.',
-    cta: { label: 'Email the schools team', href: `mailto:${site.contact.email}?subject=School%20enquiry` },
+    heading: 'You are a school',
+    body: 'Workshops, parent evenings, and the Positivity Score run across a whole year group. A term\u2019s notice is usually plenty.',
+    label: 'Email about schools',
+    href: `mailto:${site.contact.email}?subject=School%20enquiry`,
   },
   {
-    heading: 'For event organisers',
-    body: 'Keynotes and half-day workshops for conferences, corporate leadership teams and parent bodies.',
-    cta: { label: 'Enquire about a date', href: `mailto:${site.contact.email}?subject=Speaking%20enquiry` },
+    heading: 'You are organising an event',
+    body: 'Keynotes and half-day workshops. Tell me who is in the room and what you want them walking out with.',
+    label: 'Email about speaking',
+    href: `mailto:${site.contact.email}?subject=Speaking%20enquiry`,
   },
 ];
 
 export default function ContactPage() {
   return (
     <>
-      <header className="border-b border-gold/18 bg-ink-panel pb-16 pt-24">
-        <div className="shell">
-          <h1 className="on-dark-display max-w-4xl text-display-lg text-balance text-parchment">
-            Tell us what is going on
-          </h1>
-          <p className="lead mt-6">
-            Three ways in, depending on who you are. Every one of them reaches the same team.
-          </p>
-        </div>
-      </header>
+      <PageHead
+        shoulder="Get in touch"
+        title="Tell me what is going on"
+        lead="Three ways in, depending on who you are. They all reach the same small team, and I read most of it myself."
+      />
 
-      <section className="bg-ink py-section">
-        <ul className="shell grid gap-px border border-gold/18 bg-gold/18 lg:grid-cols-3">
+      <section className="border-b border-ink/12">
+        <ul className="shell divide-y divide-ink/12 py-section">
           {routes.map((r) => (
-            <li key={r.heading} className="flex flex-col justify-between gap-8 bg-ink-soft p-9">
+            <li key={r.heading} className="grid gap-4 py-9 first:pt-0 md:grid-cols-[15rem_1fr] md:gap-10">
+              <h2 className="text-d-sm text-ink">{r.heading}</h2>
               <div>
-                <h2 className="font-display text-display-sm text-parchment">{r.heading}</h2>
-                <p className="mt-4 font-sans text-[0.95rem] leading-relaxed text-parchment/60">{r.body}</p>
+                <p className="max-w-prose text-[1rem] leading-[1.66] text-ink-soft">{r.body}</p>
+                <Link href={r.href} className="btn-line mt-5">
+                  {r.label}
+                </Link>
               </div>
-              <Link href={r.cta.href} className="btn-ghost self-start">
-                {r.cta.label}
-              </Link>
             </li>
           ))}
         </ul>
+      </section>
 
-        <div className="shell mt-16 grid gap-8 border-t border-gold/18 pt-10 sm:grid-cols-3">
+      <section className="bg-paper-warm">
+        <div className="shell grid gap-8 py-14 sm:grid-cols-3">
           <div>
-            <h3 className="font-display text-base text-gold/85">Email</h3>
-            <a
-              href={`mailto:${site.contact.email}`}
-              className="mt-2 block font-sans text-[0.92rem] text-parchment/62 transition-colors hover:text-gold-light"
-            >
+            <p className="font-sans text-[0.8rem] text-ink-faint">Email</p>
+            <a href={`mailto:${site.contact.email}`} className="quiet-link mt-1.5 block font-sans text-[0.95rem]">
               {site.contact.email}
             </a>
           </div>
           <div>
-            <h3 className="font-display text-base text-gold/85">Office</h3>
-            <p className="mt-2 font-sans text-[0.92rem] text-parchment/62">{site.contact.office}</p>
+            <p className="font-sans text-[0.8rem] text-ink-faint">Where</p>
+            <p className="mt-1.5 font-sans text-[0.95rem] text-ink-soft">{site.contact.office}</p>
           </div>
           <div>
-            <h3 className="font-display text-base text-gold/85">Organisation</h3>
-            <a
-              href={site.urls.mitran}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-2 block font-sans text-[0.92rem] text-parchment/62 transition-colors hover:text-gold-light"
-            >
+            <p className="font-sans text-[0.8rem] text-ink-faint">Organisation</p>
+            <a href={site.urls.mitran} target="_blank" rel="noreferrer" className="quiet-link mt-1.5 block font-sans text-[0.95rem]">
               mitranglobal.com
             </a>
           </div>

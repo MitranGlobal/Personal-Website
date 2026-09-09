@@ -1,24 +1,29 @@
-import Reveal from '@/components/ui/Reveal';
-import SectionHeading from '@/components/ui/SectionHeading';
 import { site } from '@/lib/site';
 
+/** Deliberately quiet. Awards listed once, small, with an honest caption. */
 export default function Awards() {
   return (
-    <section id="awards" className="bg-ink-soft py-section">
-      <div className="shell">
-        <SectionHeading title="Recognition" />
+    <section id="awards" className="border-b border-ink/12">
+      <div className="shell spread py-section">
+        <p className="shoulder lg:pt-2">{site.recognition.headline}</p>
 
-        <Reveal as="ul" className="mt-14 divide-y divide-gold/18 border-y border-gold/18" stagger="li">
-          {site.awards.map((a) => (
-            <li key={a.title} className="grid gap-3 py-8 md:grid-cols-[8rem_1fr] md:gap-10">
-              <span className="font-display text-2xl text-gold/70 tabular-nums">{a.year}</span>
-              <div>
-                <h3 className="font-display text-display-sm text-parchment">{a.title}</h3>
-                <p className="mt-2 font-sans text-[0.9rem] text-parchment/55">{a.body}</p>
-              </div>
-            </li>
-          ))}
-        </Reveal>
+        <div>
+          <ul className="border-t border-ink/12">
+            {site.recognition.items.map((a) => (
+              <li key={a.title} className="grid gap-1 border-b border-ink/12 py-5 md:grid-cols-[5rem_1fr] md:gap-8">
+                <span className="font-sans text-[0.85rem] text-brass">{a.year || '—'}</span>
+                <div>
+                  <p className="text-[1.02rem] text-ink">{a.title}</p>
+                  <p className="mt-1 font-sans text-[0.85rem] text-ink-faint">{a.by}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+
+          <p className="mt-6 max-w-prose font-sans text-[0.88rem] italic text-ink-faint">
+            {site.recognition.note}
+          </p>
+        </div>
       </div>
     </section>
   );

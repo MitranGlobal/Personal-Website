@@ -1,29 +1,22 @@
 import type { Metadata } from 'next';
+import PageHead from '@/components/ui/PageHead';
 import About from '@/components/sections/About';
-import Stats from '@/components/sections/Stats';
 import Awards from '@/components/sections/Awards';
-import Testimonials from '@/components/sections/Testimonials';
+import Letters from '@/components/sections/Letters';
 import { site } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'About',
-  description: site.about.heading,
+  title: 'About me',
+  description: site.about.headline,
 };
 
 export default function AboutPage() {
   return (
     <>
-      <header className="border-b border-gold/18 bg-ink-panel pb-16 pt-24">
-        <div className="shell">
-          <h1 className="on-dark-display max-w-4xl text-display-lg text-balance text-parchment">
-            {site.about.heading}
-          </h1>
-        </div>
-      </header>
+      <PageHead shoulder="About me" title={site.about.headline} />
       <About />
-      <Stats />
       <Awards />
-      <Testimonials />
+      <Letters />
     </>
   );
 }

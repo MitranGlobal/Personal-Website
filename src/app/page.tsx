@@ -1,35 +1,29 @@
 import Hero from '@/components/sections/Hero';
-import PressMarquee from '@/components/sections/PressMarquee';
-import Stats from '@/components/sections/Stats';
+import Voices from '@/components/sections/Voices';
 import About from '@/components/sections/About';
-import PillarTiles from '@/components/sections/PillarTiles';
 import System from '@/components/sections/System';
 import PositivityScore from '@/components/sections/PositivityScore';
-import FreeTraining from '@/components/sections/FreeTraining';
+import Training from '@/components/sections/Training';
 import Books from '@/components/sections/Books';
-import Testimonials from '@/components/sections/Testimonials';
+import Letters from '@/components/sections/Letters';
 import Speaking from '@/components/sections/Speaking';
 import Awards from '@/components/sections/Awards';
 import Newsletter from '@/components/sections/Newsletter';
-import SocialConnect from '@/components/sections/SocialConnect';
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <PressMarquee />
-      <Stats />
+      <Voices />
       <About />
-      <PillarTiles />
       <System />
       <PositivityScore />
-      <FreeTraining />
+      <Training />
       <Books />
-      <Testimonials />
+      <Letters />
       <Speaking />
       <Awards />
       <Newsletter />
-      <SocialConnect />
     </>
   );
 }

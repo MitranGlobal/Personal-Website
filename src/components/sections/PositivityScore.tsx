@@ -1,45 +1,39 @@
 import Link from 'next/link';
-import Reveal from '@/components/ui/Reveal';
-import SectionHeading from '@/components/ui/SectionHeading';
 import { site } from '@/lib/site';
 
 export default function PositivityScore() {
-  const { heading, lead, areas, stat } = site.positivity;
+  const { headline, body, areas, cta, stat } = site.score;
 
   return (
-    <section id="score" className="bg-ink py-section">
-      <div className="shell grid gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+    <section id="score" className="border-b border-ink/12">
+      <div className="shell grid gap-12 py-section lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
         <div>
-          <SectionHeading title={heading} lead={lead} />
+          <h2 className="max-w-[22ch] text-d-lg text-balance text-ink">{headline}</h2>
+          <p className="body-copy mt-6 text-pretty">{body}</p>
 
-          <Reveal as="ul" className="mt-10 flex flex-wrap gap-2.5" stagger="li">
+          {/* Ten areas as a plain two-column list — a set, not a chip cloud */}
+          <ul className="mt-9 grid gap-x-10 gap-y-2.5 border-t border-ink/12 pt-7 sm:grid-cols-2">
             {areas.map((a) => (
-              <li
-                key={a}
-                className="border border-gold/28 px-4 py-2 font-sans text-[0.85rem] text-parchment/72"
-              >
+              <li key={a} className="font-sans text-[0.95rem] text-ink-soft">
                 {a}
               </li>
             ))}
-          </Reveal>
+          </ul>
 
-          <Link href={site.urls.positivityScore} className="btn-gold mt-10">
-            Take the assessment
+          <Link href={cta.href} className="btn-line mt-9">
+            {cta.label}
           </Link>
         </div>
 
-        {/* The stat that justifies the whole practice */}
-        <Reveal>
-          <aside className="relative flex h-full flex-col justify-center border border-gold/25 bg-ink-soft p-10">
-            <p className="goldleaf font-display text-[clamp(3.4rem,9vw,6rem)] font-semibold leading-none">
-              {stat.figure}
-            </p>
-            <p className="mt-6 max-w-[30ch] font-display text-xl italic leading-snug text-parchment/85">
+        <aside className="lg:pt-3">
+          <div className="border-l-2 border-brass pl-6">
+            <p className="font-display text-[clamp(2.6rem,6vw,4rem)] leading-none text-plum">{stat.figure}</p>
+            <p className="mt-4 max-w-[28ch] font-display text-[1.15rem] italic leading-snug text-ink">
               {stat.body}
             </p>
-            <p className="mt-8 font-sans text-[0.8rem] text-parchment/45">{stat.source}</p>
-          </aside>
-        </Reveal>
+            <p className="mt-5 font-sans text-[0.8rem] text-ink-faint">{stat.source}</p>
+          </div>
+        </aside>
       </div>
     </section>
   );

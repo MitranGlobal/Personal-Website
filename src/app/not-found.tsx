@@ -2,19 +2,23 @@ import Link from 'next/link';
 
 export default function NotFound() {
   return (
-    <section className="flex min-h-[70svh] items-center bg-ink">
-      <div className="shell">
-        <p className="goldleaf font-display text-display-lg font-semibold">404</p>
-        <h1 className="on-dark-display mt-4 max-w-2xl text-display-md text-parchment">
-          That page is not here
-        </h1>
-        <p className="lead mt-5">
-          The link may be old, or the address slightly off. Start again from the home page, or go straight to the
-          free training.
-        </p>
-        <div className="mt-9 flex flex-wrap gap-4">
-          <Link href="/" className="btn-gold">Back to home</Link>
-          <Link href="/programs#training" className="btn-ghost">Watch the free training</Link>
+    <section className="border-b border-ink/12">
+      <div className="shell spread py-section">
+        <p className="shoulder lg:pt-3">404</p>
+        <div>
+          <h1 className="max-w-[18ch] text-d-lg text-balance text-ink">
+            That page is not here anymore
+          </h1>
+          <p className="body-copy mt-5">
+            The link is probably old, or the address is slightly off. Start from the beginning, or go
+            straight to the free training.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3">
+            <Link href="/" className="btn-solid">Back to the start</Link>
+            <Link href="/programs#training" className="quiet-link font-sans text-[0.95rem]">
+              Watch the free training
+            </Link>
+          </div>
         </div>
       </div>
     </section>

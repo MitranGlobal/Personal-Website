@@ -1,58 +1,109 @@
-# Vidyashankar Guru — Personal Brand Site
+# Vidyashankar Guru
 
-Next.js 14 (App Router) · TypeScript · Tailwind v3 · Three.js / R3F / Drei · Framer Motion · GSAP ScrollTrigger · Zustand · Vercel
-
----
-
-## Run it
+Personal site. Next.js 14 (App Router) · TypeScript · Tailwind v3 · Three.js / R3F · Framer Motion · GSAP ScrollTrigger · Zustand · Vercel
 
 ```bash
 npm install
 npm run dev      # http://localhost:3000
-npm run build    # production build
+npm run build
 ```
 
-Node 18.17+ required.
-
-> The build fetches Bodoni Moda and Inter Tight from Google Fonts at compile time.
-> A machine with no network access to `fonts.googleapis.com` will fail at that step
-> and nowhere else.
+Node 18.17+. The build pulls Fraunces and Karla from Google Fonts at compile time,
+so a machine with no access to `fonts.googleapis.com` will fail at that step and
+nowhere else.
 
 ---
 
-## Where to edit content
+## Design language
 
-**`src/lib/site.ts` is the single source of truth.** Every headline, book, award,
-testimonial, nav item, stat and link on the site reads from it. No component holds
-hard-coded copy, so re-wording the site never means touching JSX.
+Warm paper rather than dark luxury. The audience is a worried parent, not an
+investor, so the page is built to feel legible and human instead of impressive.
 
-Things to fill in there before launch:
+| Token | Hex | Role |
+|---|---|---|
+| `paper` | `#F4F0F5` | Page ground — the brand purple bleached down, not a default cream |
+| `paper-warm` / `paper-deep` | `#EDE6EE` / `#E3D9E6` | Alternating bands, photo mounts |
+| `ink` | `#241428` | Body text, a warm aubergine-black |
+| `ink-soft` / `ink-faint` | `#4A3B50` / `#6F6275` | Secondary and caption text |
+| `plum` / `plum-lift` | `#4A1E5C` / `#6E3193` | Buttons, links, the one inverted band |
+| `brass` / `brass-light` | `#A97514` / `#E3B341` | Rules, week markers, the silk |
 
-| Key | What to replace |
+**Type.** Fraunces for display (a soft, slightly wonky serif — `SOFT 18, WONK 1`
+is set in `globals.css`), Karla for body and UI. No didone, no all-caps labels.
+
+**Layout.** Editorial spread: a narrow `.shoulder` column for margin notes, then
+the text column. Ragged right, varied measure, photographs tipped a degree off
+square with `.tipped-a` / `.tipped-b` as if placed by hand.
+
+---
+
+## Motion policy
+
+Almost none, on purpose. Scattered fade-ups on every section are the clearest
+tell of a generated page, so they are gone.
+
+- **GSAP ScrollTrigger** does exactly one thing: scrubs a brass rule down the
+  ninety-day sequence in `System.tsx`, showing how far through the programme you
+  have read. It reports information rather than decorating.
+- **Framer Motion** drives only the lightbox open/close.
+- **Three.js** runs the silk panel in the hero.
+
+`prefers-reduced-motion: reduce` is honoured in `globals.css` (transitions and
+animations off, photo tilts straightened) and inside `useTimelineRule` (the rule
+renders full rather than scrubbing).
+
+---
+
+## The silk hero
+
+`components/three/Silk.tsx` is the React Bits component ported to TypeScript with
+typed uniforms and a properly typed `ShaderMaterial` in the frame loop.
+
+It is held at gold `#C9A227` with `lightMode` on, which adds fold and specular
+passes so it reads as lit cloth on a light page. It is framed as a plate in the
+layout rather than used as a full-bleed background. Loaded via
+`dynamic(..., { ssr: false })`, with a gold gradient showing while it initialises.
+
+---
+
+## Editing content
+
+**`src/lib/site.ts` holds every word on the site.** Nothing is hard-coded in JSX.
+
+The copy is deliberately first person and plain. When you edit, keep it that way:
+short sentences, concrete details, no aphorisms. Third-person brand voice is what
+made the earlier draft feel machine-written.
+
+Before launch:
+
+| Key | What to do |
 |---|---|
-| `contact.phone` | Currently a placeholder |
 | `urls.calendly` | Real booking link |
-| `urls.freeTraining` / `positivityScore` | Real funnel URLs |
+| `urls.freeTraining`, `urls.positivityScore` | Real funnel URLs |
 | `social[*].href` | Real profile URLs |
-| `books` | A fifth title — only four are listed |
-| `testimonials` | Real, attributed quotes |
+| `books.items` | Add the fifth title |
+| `letters.items` | **Replace with real, permissioned quotes** |
+| `voices` | Confirm these are things you actually hear |
 
 ---
 
-## Images to drop in
+## Images
 
-Placeholder art ships in `public/`. Replace with real files at the same paths:
+Placeholders ship in `public/`. Replace at the same paths:
 
 ```
-public/images/vidyashankar-portrait.jpg   800×1000  (4:5, About section)
-public/images/og.jpg                     1200×630   (social share card)
+public/images/vidyashankar-portrait.jpg   800×1000  (4:5)
+public/images/og.jpg                     1200×630
 public/books/one-untold-secret-of-success.jpg
 public/books/sweep-through-your-interviews.jpg
 public/books/be-a-champ.jpg
-public/books/101-secrets-of-effective-parenting.jpg   600×900 (2:3 covers)
+public/books/101-secrets-of-effective-parenting.jpg   600×900 (2:3)
 ```
 
-Also add `public/media-kit.pdf` — the About section links to it.
+Add `public/media-kit.pdf` — the About section links to it.
+
+Photographs matter more here than in the previous draft. The layout is built to
+carry real, warm, human pictures of you working; stock photography will undo it.
 
 ---
 
@@ -61,83 +112,28 @@ Also add `public/media-kit.pdf` — the About section links to it.
 ```
 src/
 ├── app/
-│   ├── layout.tsx          fonts, metadata, shared chrome
-│   ├── page.tsx            home — composes 14 sections in order
-│   ├── globals.css         tokens, base type, focus, reduced-motion
+│   ├── layout.tsx      fonts, metadata, chrome
+│   ├── page.tsx        home — 11 sections in order
+│   ├── globals.css     tokens, paper texture, .spread, .shoulder
 │   ├── about | programs | books | speaking | contact
 │   └── not-found.tsx
 ├── components/
-│   ├── three/Silk.tsx      the gold shader (TypeScript port)
-│   ├── layout/             TopBar · Navbar · Footer
-│   ├── sections/           the 14 homepage sections
-│   └── ui/                 Reveal · SectionHeading · Lightbox · Rule
-├── hooks/useScrollReveal.ts   GSAP ScrollTrigger wrapper
-├── store/lightbox.ts          Zustand
-└── lib/site.ts                all content
+│   ├── three/Silk.tsx
+│   ├── layout/         Navbar · Footer
+│   ├── sections/       Hero · Voices · About · System · PositivityScore
+│   │                   Training · Books · Letters · Speaking · Awards · Newsletter
+│   └── ui/             PageHead · Lightbox
+├── hooks/useTimelineRule.ts
+├── store/lightbox.ts
+└── lib/site.ts
 ```
 
 ---
 
-## The hero
+## Deploy
 
-`components/three/Silk.tsx` is the React Bits component ported to TypeScript with
-typed uniforms and a properly typed `ShaderMaterial` in the frame loop.
+Push to GitHub, import at [vercel.com/new](https://vercel.com/new). Vercel detects
+Next.js with no configuration and no environment variables are needed as built.
 
-It is held at **gold `#C9A227`** in `Hero.tsx`. A plum gradient veil sits over it so
-headline type stays legible against the moving pattern — if you change the silk
-colour, re-check the veil in `Hero.tsx`.
-
-The canvas is `dynamic(..., { ssr: false })`, so WebGL stays out of the server
-bundle and a gold gradient shows while it loads.
-
----
-
-## Design tokens
-
-| Token | Hex | Role |
-|---|---|---|
-| `ink` | `#0F0616` | Page base |
-| `ink-soft` / `ink-panel` | `#160A21` / `#1E0B33` | Alternating section bands |
-| `violet-deep` / `violet` | `#3B0F70` / `#5B21B6` | Brand purple, hover states |
-| `gold` | `#C9A227` | The single accent |
-| `gold-light` | `#F0D97D` | Hover, focus rings |
-| `parchment` | `#F7F3EC` | Body text |
-
-Type: **Bodoni Moda** (display) + **Inter Tight** (body/UI).
-
----
-
-## Motion policy
-
-One orchestrated moment per page, not effects everywhere:
-
-- **Hero** — a single staggered load sequence (Framer Motion)
-- **Sections** — one GSAP ScrollTrigger reveal, fired once, on headings and the two grids where order carries meaning
-- **Interaction** — lightbox, testimonial switching, nav dropdowns, mobile drawer
-
-`prefers-reduced-motion: reduce` is honoured in three places: `globals.css` kills
-transitions and animations, `useScrollReveal` bails before creating triggers, and
-the hero uses `useReducedMotion()` to zero its offsets. The stat counters snap to
-final values instead of counting.
-
----
-
-## Accessibility
-
-Skip link, gold `:focus-visible` rings, `aria-modal` + Escape/arrow keys + scroll
-lock in the lightbox, `aria-live` on the newsletter status, labelled nav landmarks,
-and `aria-current` on testimonial dots.
-
----
-
-## Deploy to Vercel
-
-```bash
-npx vercel
-```
-
-Or push to GitHub and import the repo — Vercel detects Next.js with no
-configuration. No environment variables are required as built.
-
-The newsletter form in `components/sections/Newsletter.tsx` currently simulates
-submission; wire the marked `TODO` line to ConvertKit, Mailchimp or Resend.
+The newsletter form in `Newsletter.tsx` simulates submission — wire the marked
+line to ConvertKit, Mailchimp or Resend.
