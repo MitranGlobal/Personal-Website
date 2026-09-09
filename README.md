@@ -12,6 +12,23 @@ Node 18.17+. The build pulls Fraunces and Karla from Google Fonts at compile tim
 so a machine with no access to `fonts.googleapis.com` will fail at that step and
 nowhere else.
 
+### A note on the Fraunces config
+
+`layout.tsx` deliberately calls `Fraunces()` with **no `weight`**. Next only
+allows the `axes` option on variable fonts, and passing a named weight array
+makes the font static, so combining the two fails the build with:
+
+```
+Axes can only be defined for variable fonts
+```
+
+Omitting `weight` loads the variable face (wght 100-900), which is what the
+`SOFT`, `WONK` and `opsz` axes need. Do not add a `weight` array back to it.
+
+Note that this validation happens against font metadata bundled inside Next, so
+it fails at build time even before any network request — a local `npm run build`
+will catch it.
+
 ---
 
 ## Design language
